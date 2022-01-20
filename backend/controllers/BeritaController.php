@@ -3,12 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\web\UploadedFile;
 use common\models\Berita;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
  * BeritaController implements the CRUD actions for Berita model.
@@ -79,26 +79,19 @@ class BeritaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new berita();
- 
-        if (Yii::$app->request->isPost) {
-            // ambil foto
-            $model->gambar = UploadedFile::getInstance($model, 'gambar');
-            if ($model->validate()) {
-                // upload gambar
-                $model->gambar->saveAs('@backend/web/uploads/' . $model->gambar->baseName . '.' . $model->gambar->extension);
-                 
-                return 'berhasil mengupload ' . $model->gambar->name;
-            }else {
-                return 'gagal mengupload ' . $model->gambar->name;
-            }          
-        }
-        return $this->render('create', ['model'=>$model]);
-    }
+        $model = new Berita();
 
-    public function actionViewGambar($id_berita){
-        $file = Yii::getAlias('@frontend/web/img/' . $id_berita);
-        return Yii::$app->response->sendFile($file, NULL, ['inline' => TRUE]);
+        if ($model->load(Yii::$app->request->post())) {
+            $gambar= UploadedFile::getInstance($model, 'gambar');
+            $model->gambar = $gambar->name;
+            $model->save();
+            $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $gambar->name);
+
+            return $this->redirect(['view', 'id_berita' => $model->id_berita]);
+        } 
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -151,4 +144,3 @@ class BeritaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
-

@@ -1,10 +1,10 @@
 <?php
 
+use common\models\Berita;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
-use common\models\Berita;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,15 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'judul',
             'headline',
             'gambar',
-            'time',
             [
                 'class' => 'yii\grid\DataColumn',
                 'header' => 'Gambar',
                 'format' => 'raw',
                 'value' => function($data){
                     return "<img width='104px' src='".Url::to(['blog/view-gambar','nama'=>$data->gambar])."'>";
-                }
+                 }
             ],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

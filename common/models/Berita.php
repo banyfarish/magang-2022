@@ -29,14 +29,14 @@ class Berita extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules() 
     {
         return [
             [['judul', 'headline', 'gambar'], 'required'],
             [['time'], 'safe'],
             [['judul'], 'string', 'max' => 100],
             [['headline'], 'string', 'max' => 250],
-            [['gambar'], 'file','skipOnEmpty'=>TRUE,'extensions'=>'jpg, png'],
+            [['gambar'], 'file', 'skipOnEmpty'=>TRUE,'extensions'=>'jpg, png, jpeg'],
         ];
     }
 

@@ -47,7 +47,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                             dapat meletakkan dasar-dasar keilmuan untuk menciptakan masyarakat beriman,
                             bertaqwa dan berakhlaqul karimah yang tak terpisahkan...</p>
                     </div>
-                    <a href="#" class="primary-btn normal-btn">Learn More</a>
+                    <a href="index.php?r=site%2Fabout" class="primary-btn normal-btn">Learn More</a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -168,7 +168,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="callto__text">
-                    <a href="contact" class="primary-btn">Contact Us</a>
+                    <a href="index.php?r=site%2Fcontact" class="primary-btn">Contact Us</a>
                 </div>
             </div>
         </div>
