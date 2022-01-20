@@ -81,26 +81,19 @@ class BeritaController extends Controller
     {
         $model = new berita();
  
-        if ($model->load(Yii::$app->request->post())) {
-            
-            $gambar = UploadedFile::getInstance($model, 'gambar');
- 
-            if($model->validate()){
-                $model->save();
-                if (!empty($gambar)) {
-                    $gambar->saveAs(Yii::getAlias('@frontend/web/img/') . 'gambar.' . $gambar->extension);
-                    $model->gambar = 'gambar.' . $gambar->extension;
-                    $model->save(FALSE);
-                }
-            }
- 
-            $model->save();
-            return $this->redirect(['view', 'id_berita' => $model->id_berita]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if (Yii::$app->request->isPost) {
+            // ambil foto
+            $model->gambar = UploadedFile::getInstance($model, 'gambar');
+            if ($model->validate()) {
+                // upload gambar
+                $model->gambar->saveAs('@backend/web/uploads/' . $model->gambar->baseName . '.' . $model->gambar->extension);
+                 
+                return 'berhasil mengupload ' . $model->gambar->name;
+            }else {
+                return 'gagal mengupload ' . $model->gambar->name;
+            }          
         }
+        return $this->render('create', ['model'=>$model]);
     }
 
     public function actionViewGambar($id_berita){
@@ -158,3 +151,4 @@ class BeritaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
+
