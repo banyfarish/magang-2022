@@ -24,7 +24,7 @@ class AboutController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
+                        'delete' => ['POST','GET'],
                     ],
                 ],
             ]
@@ -81,7 +81,7 @@ class AboutController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id_about' => $model->id_about]);
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -104,7 +104,7 @@ class AboutController extends Controller
         $model = $this->findModel($id_about);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id_about' => $model->id_about]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

@@ -26,7 +26,7 @@ class BeritaController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
+                        'delete' => ['POST','GET'],
                     ],
                 ],
             ]
@@ -65,10 +65,10 @@ class BeritaController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id_berita)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id_berita),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -87,7 +87,7 @@ class BeritaController extends Controller
             $model->save();
             $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $gambar->name);
 
-            return $this->redirect(['view', 'id_berita' => $model->id_berita]);
+            return $this->redirect(['index']);
         } 
         return $this->render('create', [
             'model' => $model,
@@ -101,13 +101,18 @@ class BeritaController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id_berita)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($id_berita);
+        $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id_berita' => $model->id_berita]);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+            $gambar= UploadedFile::getInstance($model, 'gambar');
+            $model->gambar = $gambar->name;
+            $model->save();
+            $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $gambar->name);
+
+            return $this->redirect(['index']);
+        } 
 
         return $this->render('update', [
             'model' => $model,
@@ -121,9 +126,9 @@ class BeritaController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id_berita)
+    public function actionDelete($id)
     {
-        $this->findModel($id_berita)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

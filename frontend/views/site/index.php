@@ -77,7 +77,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
             <div class="project__slider owl-carousel">
                 <?php foreach ($news as $berita) : ?>
                     <div class="col-lg-3">
-                        <div href="<?= $berita->headline ?>" class="project__slider__item set-bg" data-setbg="<?= $berita->gambar ?>">
+                        <div class="project__slider__item set-bg" data-setbg="<?= $berita->gambar ?>">
                             <div class="project__slider__item__hover">
                                 <span>Terkini</span>
                                 <!-- <a href="<?= $berita->headline ?>" class="more_btn"> -->

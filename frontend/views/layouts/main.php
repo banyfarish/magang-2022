@@ -66,7 +66,7 @@ use yii\bootstrap4\NavBar;
         <?= $content ?>
     </div>
 </main>    
-
+<br><br><br><br>
 
 <!-- Footer Section Begin -->
 <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
@@ -75,7 +75,6 @@ use yii\bootstrap4\NavBar;
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="footer__top__text">
-                            <h2>Ready To Work With Us?</h2>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -106,11 +105,9 @@ use yii\bootstrap4\NavBar;
                     <div class="footer__widget">
                         <h6>Company</h6>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Our Works</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">FAQs</a></li>
+                            <li><a href="index.php?r=site%2Fabout">tentang kami</a></li>
+                            <li><a href="#">perbaikan</a></li>
+                            <li><a href="#">pekerjaan kami</a></li>
                         </ul>
                     </div>
                 </div>
