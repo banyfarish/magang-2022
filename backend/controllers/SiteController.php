@@ -8,6 +8,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use common\models\Berita;
 
 /**
  * Site controller
@@ -62,7 +63,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $news = Berita::find()->all();
+
+        return $this->render('index', ['news'=> $news]);
     }
 
     /**

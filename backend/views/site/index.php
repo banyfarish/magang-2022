@@ -74,19 +74,19 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                 </div>
             </div>
             <div class="row">
-                @foreach($berita as $s)
                 <div class="project__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="project__slider__item set-bg" data-setbg="">
-                            <div class="project__slider__item__hover">
-                                <span>interiors</span>     
-                                <a href="https://news.detik.com/berita/d-5893628/dpd-diminta-jadi-saluran-aspirasi-ponpes-se-ri-lanyalla-kami-siap" class="more_btn">
-                                    <h5>DPD Diminta Jadi Saluran Aspirasi Ponpes se-RI, LaNyalla: Kami Siap!</h5></a>
+                    <?php foreach ($news as $berita) : ?>
+                        <div class="col-lg-3">
+                            <div class="project__slider__item set-bg" data-setbg="<?= $berita->gambar ?>">
+                                <div class="project__slider__item__hover">
+                                    <span>Terkini</span>
+                                    <!-- <a href="<?= $berita->headline ?>" class="more_btn"> -->
+                                    <h5><?= $berita->judul ?></h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-                @endforeach
             </div>
         </div>
     </section>
