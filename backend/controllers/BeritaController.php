@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\base\Security;
 
 /**
  * BeritaController implements the CRUD actions for Berita model.
@@ -80,13 +81,17 @@ class BeritaController extends Controller
     public function actionCreate()
     {
         $model = new Berita();
-
-        if ($model->load(Yii::$app->request->post())) {
+        $model->setScenario('create');
+        $generate = Yii::$app->security->generateRandomString(12);
+        
+        if ($model->load(Yii::$app->request->post())) { 
+            
             $gambar= UploadedFile::getInstance($model, 'gambar');
-            $model->gambar = $gambar->name;
-            $model->save();
-            $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $gambar->name);
-
+            $model->gambar = $generate;
+            if ($model->save())
+            {
+                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate);
+            }
             return $this->redirect(['index']);
         } 
         return $this->render('create', [
@@ -104,18 +109,24 @@ class BeritaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $generate = Yii::$app->security->generateRandomString(12);
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->attributes=$_POST['gambar'];
             $gambar= UploadedFile::getInstance($model, 'gambar');
-            $model->gambar = $gambar->name;
-            $model->save();
-            $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $gambar->name);
-
+            $model->gambar = $generate;
+            // var_dump($model->gambar);
+            // die;
+            if ($model->save()) {
+                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate);
+            }
+            
             return $this->redirect(['index']);
         } 
 
         return $this->render('update', [
             'model' => $model,
+
         ]);
     }
 
@@ -140,12 +151,18 @@ class BeritaController extends Controller
      * @return Berita the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id_berita)
+    protected function findModel($id)
     {
-        if (($model = Berita::findOne(['id_berita' => $id_berita])) !== null) {
+        if (($model = Berita::findOne(['id_berita' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function generate()
+    {
+        // $this->security = Instance::ensure($this->security, Security::className());
+        // return $this->security->generateRandomString($this->length);
     }
 }

@@ -32,11 +32,11 @@ class Berita extends \yii\db\ActiveRecord
     public function rules() 
     {
         return [
-            [['judul', 'headline', 'gambar'], 'required'],
+            [['judul', 'headline'], 'required'],
             [['time'], 'safe'],
             [['judul'], 'string', 'max' => 100],
             [['headline'], 'string', 'max' => 250],
-            [['gambar'], 'file', 'skipOnEmpty'=>TRUE,'extensions'=>'jpg, png, jpeg'],
+            [['gambar'], 'file', 'extensions'=>TRUE,'extensions'=>'jpg, png, jpeg'],
         ];
     }
 

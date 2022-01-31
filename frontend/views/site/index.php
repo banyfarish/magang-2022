@@ -80,7 +80,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                         <div class="project__slider__item set-bg" data-setbg="<?= $berita->gambar ?>">
                             <div class="project__slider__item__hover">
                                 <span>Terkini</span>
-                                <!-- <a href="<?= $berita->headline ?>" class="more_btn"> -->
+                                <a href="<?= $berita->headline ?>" class="more_btn"> 
                                 <h5><?= $berita->judul ?></h5>
                             </div>
                         </div>
@@ -105,58 +105,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                     <h2>untuk Jakarta dan Sekitarnya</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-5 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2>04.39</h2>
-                        </div>
-                        <div class="counter__item__text">
-                            <h5>Shubuh</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2>12.09</h2>
-                        </div>
-                        <div class="counter__item__text">
-                            <h5>Dhuhur</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2>15.23</h2>
-                        </div>
-                        <div class="counter__item__text">
-                            <h5>Ashar</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2>18.19</h2>
-                        </div>
-                        <div class="counter__item__text">
-                            <h5>Maghrib</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2>19.31</h2>
-                        </div>
-                        <div class="counter__item__text">
-                            <h5>Isyak</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </section>

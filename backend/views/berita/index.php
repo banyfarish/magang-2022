@@ -2,14 +2,12 @@
 
 use common\models\Berita;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Beritas';
+$this->title = 'Halaman Berita';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="berita-index">
@@ -26,16 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_berita',
             'judul',
             'headline',
-            'gambar',
             [
                 'class' => 'yii\grid\DataColumn',
                 'header' => 'Gambar',
                 'format' => 'raw',
                 'value' => function($data){
-                    return "<img width='104px' src='".Url::to(['blog/view-gambar','nama'=>$data->gambar])."'>";
+
+                    return Html::img(Yii::$app->request->BaseUrl.'/uploads/' . $data['gambar']);
                  }
             ],
             ['class' => 'yii\grid\ActionColumn'],
