@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Berita;
+use common\models\Jsholat;
 use Yii;
 use yii\web\Controller;
 
@@ -16,6 +17,17 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+
+    public function actionJsholat()
+    {
+        $model = new Jsholat();
+        $jadwal = null;
+        if ($model->load(\Yii::$app->request->get(), '') && $model->validate()) {
+            $jadwal = $model->getJsholat();
+        }
+        return $this->render('jsholat', ['model' => $model, 'jadwal' => $jadwal]);
+    }
+
     public function actionIndex()
     {
         $news = Berita::find()->all();

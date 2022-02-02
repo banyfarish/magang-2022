@@ -1,6 +1,5 @@
 <?php
 
-use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -18,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </p>
 
-    <?= DetailView::widget('ActiveForm',[
+    <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id_berita',
@@ -27,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'enctype' => 'multipart/form-data',
                 'attribute'=>'gambar',
-                'value'=>Html::img(Yii::$app->request->BaseUrl.'/uploads/' .$model->gambar),
+                'value'=>Html::img(Yii::$app->request->BaseUrl.'/uploads/' .$model->gambar,['alt'=>'some', 'class'=>'thing','width'=>'500px']),
                 'format' => ['raw'],
             ],
 

@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+
 $this->title = 'IKATAN PESANTREN INDONESIA';
 ?>
 
@@ -77,11 +78,12 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
             <div class="project__slider owl-carousel">
                 <?php foreach ($news as $berita) : ?>
                     <div class="col-lg-3">
-                        <div class="project__slider__item set-bg" data-setbg="<?= $berita->gambar ?>">
+                        <div class="project__slider__item set-bg" data-setbg="<?= Yii::$app->urlManagerBackend->baseUrl . "/". $berita->gambar ?>">
                             <div class="project__slider__item__hover">
                                 <span>Terkini</span>
                                 <a href="<?= $berita->headline ?>" class="more_btn"> 
                                 <h5><?= $berita->judul ?></h5>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -103,6 +105,19 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                 <div class="section-title">
                     <span>Jadwal Sholat 5 Waktu</span>
                     <h2>untuk Jakarta dan Sekitarnya</h2>
+                    <?php $formatter = Yii::$app->formatter; ?>
+                    <?php if (isset($jadwal)): ?>
+                       <table width="50%">
+                           <tbody>
+                               <?php foreach ($jadwal as $name => $value): ?>
+                                   <tr>
+                                       <td><?= $name ?></td>
+                                       <td><?= $formatter->asTime($value) ?></td>
+                                   </tr>
+                               <?php endforeach; ?>
+                           </tbody>
+                       </table>
+                    <?php endif; ?>
                 </div>
             </div>
             

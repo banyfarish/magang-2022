@@ -64,7 +64,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $news = Berita::find()->all();
-
         return $this->render('index', ['news'=> $news]);
     }
 

@@ -9,7 +9,6 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\base\Security;
 
 /**
  * BeritaController implements the CRUD actions for Berita model.
@@ -81,16 +80,15 @@ class BeritaController extends Controller
     public function actionCreate()
     {
         $model = new Berita();
-        $model->setScenario('create');
         $generate = Yii::$app->security->generateRandomString(12);
         
         if ($model->load(Yii::$app->request->post())) { 
             
             $gambar= UploadedFile::getInstance($model, 'gambar');
-            $model->gambar = $generate;
+            $model->gambar = $generate.'.'. $gambar->extension;
             if ($model->save())
             {
-                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate);
+                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate .'.'. $gambar->extension );
             }
             return $this->redirect(['index']);
         } 
@@ -112,13 +110,12 @@ class BeritaController extends Controller
         $generate = Yii::$app->security->generateRandomString(12);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->attributes=$_POST['gambar'];
-            $gambar= UploadedFile::getInstance($model, 'gambar');
-            $model->gambar = $generate;
+            $gambar= UploadedFile::getInstance($model, 'gambar',);
+            $model->gambar = $generate.'.'. $gambar->extension;
             // var_dump($model->gambar);
             // die;
             if ($model->save()) {
-                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate);
+                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate.'.'. $gambar->extension);
             }
             
             return $this->redirect(['index']);
@@ -139,6 +136,18 @@ class BeritaController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = Berita::findOne($id);
+
+        if ($model->delete(Yii::$app->request->post())) {
+        unlink($model->basepath .'/web/uploads/' . $model->id );
+        $model->delete();
+        
+        }
+        // $model = $this->findModel($id);
+        // if(Yii::$app->request->isPostRequest){
+        //     unlink(Yii::$app->basePath . '/web/uploads/' . $id->extension);			
+		// 	$this->loadModel($id)->delete();            
+        // }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -160,9 +169,4 @@ class BeritaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function generate()
-    {
-        // $this->security = Instance::ensure($this->security, Security::className());
-        // return $this->security->generateRandomString($this->length);
-    }
 }
