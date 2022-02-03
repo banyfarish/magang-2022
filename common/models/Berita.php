@@ -53,4 +53,5 @@ class Berita extends \yii\db\ActiveRecord
             'time' => 'Time',
         ];
     }
+    
 }

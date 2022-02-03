@@ -107,6 +107,7 @@ class BeritaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldfilename = $model->gambar;
         $generate = Yii::$app->security->generateRandomString(12);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -119,7 +120,10 @@ class BeritaController extends Controller
             }
             
             return $this->redirect(['index']);
-        } 
+            
+        } else{
+            $model->gambar = $oldfilename;
+        }
 
         return $this->render('update', [
             'model' => $model,
@@ -139,7 +143,7 @@ class BeritaController extends Controller
         $model = Berita::findOne($id);
 
         if ($model->delete(Yii::$app->request->post())) {
-        unlink($model->basepath .'/web/uploads/' . $model->id );
+        unlink(yii::$app->basepath .'/web/uploads/' . $model->gambar );
         $model->delete();
         
         }

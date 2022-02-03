@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\db\Expression;
 
 /**
  * User model
@@ -41,11 +42,25 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    // public function behaviors()
+    // {
+    //     return [
+    //         TimestampBehavior::className(),
+    //     ];
+    // }
+
+    public function behaviors() 
     {
         return [
-            TimestampBehavior::className(),
-        ];
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at']
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+        ]; 
     }
 
     /**
@@ -54,8 +69,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['status','username','email'], 'required'],
+            ['password_hash', 'required', 'on' => 'insert'],
+            ['password_hash', 'string'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -209,5 +227,18 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function beforeSave($insert) {
+        if ($insert) {
+            $this->setPassword($this->password_hash);
+        } else {
+            if (!empty($this->password_hash)) {
+                $this->setPassword($this->password_hash);
+            } else {
+                $this->password_hash = (string) $this->getOldAttribute('password_hash');
+            }
+        }
+        return parent::beforeSave($insert);
     }
 }
