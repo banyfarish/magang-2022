@@ -3,9 +3,7 @@
 namespace common\models;
 
 use Yii;
-use yii\base\Model;
-use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "berita".
@@ -26,14 +24,27 @@ class Berita extends \yii\db\ActiveRecord
         return 'berita';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'judul',
+                'ensureUnique' => true,
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules() 
     {
         return [
-            [['judul', 'headline'], 'required'],
+            [['judul', 'headline','slug'], 'required'],
             [['time'], 'safe'],
+            [['slug'], 'string', 'max' => 255],
             [['judul'], 'string', 'max' => 100],
             [['headline'], 'string', 'max' => 250],
             [['gambar'], 'file', 'extensions'=>TRUE,'extensions'=>'jpg, png, jpeg'],
@@ -47,6 +58,7 @@ class Berita extends \yii\db\ActiveRecord
     {
         return [
             'id_berita' => 'Id Berita',
+            'slug' => 'Slug',
             'judul' => 'Judul',
             'headline' => 'Headline',
             'gambar' => 'Gambar',

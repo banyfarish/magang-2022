@@ -21,13 +21,42 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                 </div>
-                <?php
-                    foreach ($about as $a){
-                        echo $a['isi'];
-                        echo $a['misi'];
-                        echo $a['visi'];
-                    }
-                ?>    
+                <div class="col-lg-8 col-md-8">
+                    <div class="about__page__services">
+                        <div class="about__page__services__text">
+                        <h4>Identitas </h4>
+                        <?php
+                            foreach ($about as $a){
+                                echo $a['isi'];
+                            }
+                        ?>
+                        </div>    
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="services__item">
+                                    <img src="img/services/services-5.png" alt="">
+                                    <h4>Misi</h4>
+                                    <?php
+                                    foreach ($about as $a){
+                                        echo $a['misi'];
+                                    }
+                                    ?>
+                                </div>
+                            </div>                   
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="services__item">
+                                    <img src="img/services/services-6.png" alt="">
+                                    <h4>Visi</h4>
+                                    <?php
+                                    foreach ($about as $a){
+                                        echo $a['visi'];
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>             
             </div>
         </div>
     </section>
@@ -37,13 +66,32 @@ $this->params['breadcrumbs'][] = $this->title;
     <section class="team spad">
         <div class="container">
             <div class="row">
-                <?php
-                    foreach ($about as $p){
-                        echo $p['profil_ketua'];
-                        echo $p['tentang'];
-                        echo $p['gambar'];
+            <div class="col-lg-6"> <div class="about__text"> <div class="section-title"> 
+                <h5>
+                    <?php
+                    foreach ($about as $a){
+                        echo $a['profil_ketua'];
                     }
-                ?>   
+                    ?>
+                </h5>                              
+                <span>Ketua Umum DPP IPI</span> </div> 
+                <?php
+                foreach ($about as $a){
+                    echo $a['tentang'];
+                }
+                ?>
+                <div class="team__social"> <a href="#"><i class="fa fa-facebook"></i></a> 
+                <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-instagram"></i></a> </div></div></div>
+                <div class="col-lg-6"> <div class="about__pic">                         
+                    <div class="about__pic__inner"> <img src="
+                        <?php
+                        foreach ($about as $a){
+                            echo $a['gambar'];
+                        }
+                        ?>" alt=""> 
+                    </div> 
+                </div> 
+            </div>
             </div>
         </div>
     </section> 

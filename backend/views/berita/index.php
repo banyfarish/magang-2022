@@ -24,15 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'slug',
             'judul',
-            'headline',
+            
             [
                 'class' => 'yii\grid\DataColumn',
                 'header' => 'Gambar',
                 'format' => 'raw',
                 'value' => function($data){
 
-                    return Html::img(Yii::$app->request->BaseUrl.'/uploads/' . $data['gambar']);
+                    return Html::img(Yii::$app->request->BaseUrl.'/uploads/' . $data['gambar'],['alt'=>'some', 'class'=>'thing','width'=>'500px']);
                  }
             ],
             ['class' => 'yii\grid\ActionColumn'],

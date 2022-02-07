@@ -23,6 +23,8 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+<body class="d-flex flex-column h-100">
+<?php $this->beginBody() ?>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
@@ -85,7 +87,7 @@ AppAsset::register($this);
 
 
 <!-- Footer Section Begin -->
-<footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
+<!-- <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">
             <div class="footer__top">
                 <div class="row">
@@ -147,8 +149,19 @@ AppAsset::register($this);
             </div>
         </div>
     </div>
-</footer>
+</footer> -->
 <!-- Footer Section End -->
+<footer class="footer mt-auto py-3 text-muted">
+    <div class="container">
+        <p class="float-left">&copy; IPI <?= date('Y') ?></p>
+        <p class="float-right"><?= Yii::powered() ?></p>
+    </div>
+</footer>
+
+<?php $this->endBody() ?>
 </body>
+</html>
+<?php $this->endPage() ?>
+
 
 
