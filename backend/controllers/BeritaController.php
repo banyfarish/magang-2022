@@ -26,7 +26,7 @@ class BeritaController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST','GET'],
+                        'delete' => ['POST', 'GET'],
                     ],
                 ],
             ]
@@ -81,17 +81,16 @@ class BeritaController extends Controller
     {
         $model = new Berita();
         $generate = Yii::$app->security->generateRandomString(12);
-        
-        if ($model->load(Yii::$app->request->post())) { 
-            
-            $gambar= UploadedFile::getInstance($model, 'gambar');
-            $model->gambar = $generate.'.'. $gambar->extension;
-            if ($model->save())
-            {
-                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate .'.'. $gambar->extension );
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $gambar = UploadedFile::getInstance($model, 'gambar');
+            $model->gambar = $generate . '.' . $gambar->extension;
+            if ($model->save()) {
+                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate . '.' . $gambar->extension);
             }
             return $this->redirect(['index']);
-        } 
+        }
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -111,17 +110,19 @@ class BeritaController extends Controller
         $generate = Yii::$app->security->generateRandomString(12);
 
         if ($model->load(Yii::$app->request->post())) {
-            $gambar= UploadedFile::getInstance($model, 'gambar',);
-            $model->gambar = $generate.'.'. $gambar->extension;
+            $gambar = UploadedFile::getInstance($model, 'gambar');
+            if ($gambar != null) {
+                $model->gambar = $generate . '.' . $gambar->extension;
+                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate . '.' . $gambar->extension);
+            } else {
+                $model->gambar = $oldfilename;
+            }
             // var_dump($model->gambar);
             // die;
-            if ($model->save()) {
-                $gambar->saveAs(yii::$app->basePath . '/web/uploads/' . $generate.'.'. $gambar->extension);
-            }
-            
+            $model->save();
+
             return $this->redirect(['index']);
-            
-        } else{
+        } else {
             $model->gambar = $oldfilename;
         }
 
@@ -143,15 +144,9 @@ class BeritaController extends Controller
         $model = Berita::findOne($id);
 
         if ($model->delete(Yii::$app->request->post())) {
-        unlink(yii::$app->basepath .'/web/uploads/' . $model->gambar );
-        $model->delete();
-        
+            unlink(yii::$app->basepath . '/web/uploads/' . $model->gambar);
+            $model->delete();
         }
-        // $model = $this->findModel($id);
-        // if(Yii::$app->request->isPostRequest){
-        //     unlink(Yii::$app->basePath . '/web/uploads/' . $id->extension);			
-		// 	$this->loadModel($id)->delete();            
-        // }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -172,5 +167,4 @@ class BeritaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

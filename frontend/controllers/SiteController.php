@@ -18,21 +18,17 @@ class SiteController extends Controller
      * @return mixed
      */
 
-    public function actionJsholat()
-    {
-        $model = new Jsholat();
-        $jadwal = null;
-        if ($model->load(\Yii::$app->request->get(), '') && $model->validate()) {
-            $jadwal = $model->getJsholat();
-        }
-        return $this->render('jsholat', ['model' => $model, 'jadwal' => $jadwal]);
-    }
-
     public function actionIndex()
     {
         $news = Berita::find()->all();
-
-        return $this->render('index', ['news'=> $news]);
+        $model = new Jsholat();
+        $jadwal = null;
+        $jadwal = $model->getJsholat();
+        return $this->render('index', [
+            'news'=> $news,
+            'model' => $model, 
+            'jadwal' => $jadwal
+        ]);
     }
 
     /**

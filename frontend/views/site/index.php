@@ -78,11 +78,11 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
             <div class="project__slider owl-carousel">
                 <?php foreach ($news as $berita) : ?>
                     <div class="col-lg-3">
-                        <div class="project__slider__item set-bg" data-setbg="<?= Yii::$app->urlManagerBackend->baseUrl . "/". $berita->gambar ?>">
+                        <div class="project__slider__item set-bg" data-setbg="<?= Yii::$app->urlManagerBackend->baseUrl . "/" . $berita->gambar ?>">
                             <div class="project__slider__item__hover">
                                 <span>Terkini</span>
-                                <a href="<?= $berita->headline ?>" class="more_btn"> 
-                                <h5><?= $berita->judul ?></h5>
+                                <a href="<?= $berita->headline ?>" class="more_btn">
+                                    <h5><?= $berita->judul ?></h5>
                                 </a>
                             </div>
                         </div>
@@ -106,21 +106,25 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                     <span>Jadwal Sholat 5 Waktu</span>
                     <h2>untuk Jakarta dan Sekitarnya</h2>
                     <?php $formatter = Yii::$app->formatter; ?>
-                    <?php if (isset($jadwal)): ?>
-                       <table width="50%">
-                           <tbody>
-                               <?php foreach ($jadwal as $name => $value): ?>
-                                   <tr>
-                                       <td><?= $name ?></td>
-                                       <td><?= $formatter->asTime($value) ?></td>
-                                   </tr>
-                               <?php endforeach; ?>
-                           </tbody>
-                       </table>
+                    <?php if (isset($jadwal)) : ?>
+                        <div class="row">
+                            <?php foreach ($jadwal as $name => $value) : ?>         
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="counter__item">
+                                        <div class="counter__item__text">
+                                            <h5><?= $name ?> </h5>
+                                        </div>
+                                        <div class="counter__item__number">
+                                            <h2><?= $formatter->asTime($value) ?></h2>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
-            
         </div>
     </div>
 </section>
