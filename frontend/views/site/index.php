@@ -101,7 +101,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
 
         </div>
         <div class="counter__content">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
                 <div class="section-title">
                     <span>Jadwal Sholat 5 Waktu</span>
                     <h2>untuk Jakarta dan Sekitarnya</h2>
@@ -116,8 +116,7 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
                                         </div>
                                         <div class="counter__item__number">
                                             <h2><?= $formatter->asTime($value) ?></h2>
-                                        </div>
-                                        
+                                        </div>                                      
                                     </div>
                                 </div>
                             <?php endforeach; ?>
