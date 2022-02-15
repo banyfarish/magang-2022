@@ -7,12 +7,11 @@ use yii\grid\GridView;
 use common\models\About;
 
 /* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $dataProvider yii\data\ActiveDataProvider */?>
+<br><br><br><br>
 
-$this->title = 'Abouts';
-$this->params['breadcrumbs'][] = $this->title;
-?>
 <div class="about-index">
+    
 
     <h1><?= Html::encode($this->title) ?></h1>
 

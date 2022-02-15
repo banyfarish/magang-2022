@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'headline')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'isi')->textInput() ?>
+
     <?= $form->field($model, 'gambar')->fileInput() ?>
     
     <?= $form->field($model, 'time')->textInput() ?>

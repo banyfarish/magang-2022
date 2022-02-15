@@ -8,8 +8,6 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
     <!-- Contact Section Begin -->

@@ -9,11 +9,11 @@ use common\models\User;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+<br><br><br><br>
 <div class="user-index">
 
+    <?php $this->title = 'Users';?>
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>

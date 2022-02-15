@@ -5,12 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\About */
 
-$this->title = 'Update About: ' . $model->id_about;
-$this->params['breadcrumbs'][] = ['label' => 'Abouts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id_about, 'url' => ['view', 'id_about' => $model->id_about]];
-$this->params['breadcrumbs'][] = 'Update';
 ?>
+<br><br><br><br>
 <div class="about-update">
+
+    <?php $this->title = 'Update About: ' . $model->id_about;?>
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -5,9 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Berita */
 
+?>
+<br><br><br><br>
+<?php 
 $this->title = 'Create Berita';
-$this->params['breadcrumbs'][] = ['label' => 'Beritas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="berita-create">
 

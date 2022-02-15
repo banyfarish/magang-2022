@@ -47,9 +47,6 @@ use yii\bootstrap4\NavBar;
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="#"><img src="img/logo.png" alt=""></a>
-                    </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu mobile-menu">
@@ -96,28 +93,9 @@ use yii\bootstrap4\NavBar;
     <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">
-            <div class="footer__top">
-                <div class="row">
-                    <div class="col-lg-8 col-md-6">
-                        <div class="footer__top__text">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer__top__newslatter">
-                            <form action="#">
-                                <input type="text" placeholder="Enter your email...">
-                                <button type="submit"><i class="fa fa-send"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="img/logo.png" alt=""></a>
-                        </div>
                         <p>Kantor DPP Ikatan Pesantren Indonesia GRAHA PERUM PNRI Jl.
                             Percetakan Negara No. 21 Jakarta, 10560 <br />Santa Monica, CA 90403</p>
                         <ul>
@@ -128,7 +106,7 @@ use yii\bootstrap4\NavBar;
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                     <div class="footer__widget">
-                        <h6>Company</h6>
+                        <h6>Perusahaan</h6>
                         <ul>
                             <li><a href="index.php?r=site%2Fabout">tentang kami</a></li>
                             <li><a href="#">perbaikan</a></li>

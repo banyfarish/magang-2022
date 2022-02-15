@@ -6,13 +6,11 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+<br><br><br>
 <div class="user-view">
-
+    <?php $this->title = $model->id;?>
     <h1><?= Html::encode($this->title) ?></h1>
     
 

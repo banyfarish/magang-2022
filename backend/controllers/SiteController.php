@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use common\models\Berita;
+use common\models\Jsholat;
 
 /**
  * Site controller
@@ -29,7 +30,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'about', 'contact'],
+                        'actions' => ['logout', 'index', 'about','detail', 'contact'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -64,7 +65,14 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $news = Berita::find()->all();
-        return $this->render('index', ['news'=> $news]);
+        $model = new Jsholat();
+        $jadwal = null;
+        $jadwal = $model->getJsholat();
+        return $this->render('index', [
+            'news'=> $news,
+            'model' => $model, 
+            'jadwal' => $jadwal
+        ]);
     }
 
     /**
@@ -117,6 +125,15 @@ class SiteController extends Controller
         
 
         return $this->render('about', ['about'=> $about]);
+    }
+
+    public function actionDetail()
+    {
+        $db = Yii::$app->db;
+        $berita = $db->createCommand ('SELECT * FROM berita WHERE id_berita =1');
+        
+
+        return $this->render('berita', ['Berita'=> $berita]);
     }
     
     public function actionContact()

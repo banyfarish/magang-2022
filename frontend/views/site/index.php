@@ -104,19 +104,20 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
             <div class="col-lg-12">
                 <div class="section-title">
                     <span>Jadwal Sholat 5 Waktu</span>
-                    <h2>untuk Jakarta dan Sekitarnya</h2>
+                    <h2>untuk Jakarta dan Sekitarnya</h2><br>
                     <?php $formatter = Yii::$app->formatter; ?>
                     <?php if (isset($jadwal)) : ?>
                         <div class="row">
-                            <?php foreach ($jadwal as $name => $value) : ?>         
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="counter__item">
+                            <br>
+                            <?php foreach ($jadwal as $name => $value) : ?>
+                                <div class="col-lg-6 col-md-6 col-sm-6"><br><br>
+                                    <div class="counter__item"><br>
                                         <div class="counter__item__text">
                                             <h5><?= $name ?> </h5>
                                         </div>
-                                        <div class="counter__item__number">
+                                        <div class="counter__item__number"><br>
                                             <h2><?= $formatter->asTime($value) ?></h2>
-                                        </div>                                      
+                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -133,20 +134,10 @@ $this->title = 'IKATAN PESANTREN INDONESIA';
 <section class="callto spad set-bg" data-setbg="img/footer1.jpg">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-10 text-center">
-                <div class="callto__text">
-                    <a href="index.php?r=site%2Fcontact" class="primary-btn">Contact Us</a>
-                </div>
+            <div class="callto__text">
+                <a href="index.php?r=site%2Fcontact" class="primary-btn">Contact Us</a>
             </div>
         </div>
     </div>
 </section>
 <!-- Call To Action Section End -->
-
-<!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/main.js"></script>

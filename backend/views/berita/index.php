@@ -7,9 +7,9 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Halaman Berita';
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
+<br><br><br><br>
 <div class="berita-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

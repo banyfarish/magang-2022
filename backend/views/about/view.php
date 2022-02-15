@@ -4,11 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\About */
-
-$this->title = $model->id_about;
-$this->params['breadcrumbs'][] = ['label' => 'Abouts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+/* @var $model common\models\About */?>
+<br><br><br><br>
+<?php
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="about-view">
@@ -23,7 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
+        
         ]) ?>
+        <?= Html::a('Back', ['index'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
